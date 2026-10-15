@@ -1,0 +1,258 @@
+/* =========================================
+   NEXUS — CUSTOM 404 ERROR PAGE
+========================================= */
+
+.error-page {
+    min-height: 70vh;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(43, 131, 198, 0.10), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+    color: #102a43;
+    overflow: hidden;
+}
+
+.error-section {
+    position: relative;
+    padding: clamp(55px, 8vw, 100px) 0;
+    text-align: center;
+}
+
+.error-section .container {
+    width: min(100% - 36px, 850px);
+    margin-inline: auto;
+}
+
+.error-visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(100%, 430px);
+    aspect-ratio: 1.6;
+    margin: 0 auto 12px;
+    isolation: isolate;
+}
+
+.error-number {
+    position: relative;
+    z-index: 2;
+    color: #173b67;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(6rem, 20vw, 11rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.09em;
+    text-shadow: 0 12px 35px rgba(23, 59, 103, 0.10);
+    animation: error-number-enter 800ms ease-out both;
+}
+
+.error-orbit {
+    position: absolute;
+    z-index: -1;
+    width: 75%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(43, 131, 198, 0.18);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.error-orbit-one {
+    animation: error-orbit-spin 24s linear infinite;
+}
+
+.error-orbit-two {
+    width: 58%;
+    border-color: rgba(244, 163, 64, 0.28);
+    animation: error-orbit-spin 18s linear infinite reverse;
+}
+
+.error-plane {
+    position: absolute;
+    z-index: 3;
+    top: 13%;
+    right: 15%;
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    background: #fff1d9;
+    color: #c97912;
+    font-size: 1.7rem;
+    box-shadow: 0 10px 30px rgba(16, 42, 67, 0.10);
+    transform: rotate(-12deg);
+    animation: error-plane-float 3.5s ease-in-out infinite;
+}
+
+.error-eyebrow {
+    margin: 8px 0 14px;
+    color: #c97912;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.error-section h1 {
+    max-width: 720px;
+    margin: 0 auto 18px;
+    color: #102a43;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+}
+
+.error-section h1 span {
+    color: #2b83c6;
+}
+
+.error-description {
+    max-width: 620px;
+    margin: 0 auto;
+    color: #526579;
+    font-size: clamp(0.98rem, 2vw, 1.08rem);
+    line-height: 1.9;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.error-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.error-actions .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(23, 59, 103, 0.14);
+}
+
+.error-help {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 36px;
+    color: #526579;
+    font-size: 0.9rem;
+}
+
+.error-help p {
+    margin: 0;
+    line-height: 1.8;
+}
+
+.error-help-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #22a06b;
+    box-shadow: 0 0 0 5px rgba(34, 160, 107, 0.10);
+}
+
+.error-help a {
+    color: #173b67;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgba(43, 131, 198, 0.45);
+    text-underline-offset: 4px;
+}
+
+.error-help a:hover {
+    color: #2b83c6;
+}
+
+@keyframes error-number-enter {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes error-orbit-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes error-plane-float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-12deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(-5deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .error-section {
+        padding: 45px 0 55px;
+    }
+
+    .error-visual {
+        width: min(100%, 340px);
+    }
+
+    .error-plane {
+        top: 9%;
+        right: 8%;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        font-size: 1.4rem;
+    }
+
+    .error-actions {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 340px;
+        margin-inline: auto;
+    }
+
+    .error-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .error-number,
+    .error-orbit-one,
+    .error-orbit-two,
+    .error-plane {
+        animation: none;
+    }
+
+    .error-actions .btn {
+        transition: none;
+    }
+
+    .error-actions .btn:hover {
+        transform: none;
+    }
+}

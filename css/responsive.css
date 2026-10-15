@@ -1,0 +1,169 @@
+/* =====================================================
+   NEXUS EDUCATIONAL TOURS AND TRAVELS
+   RESPONSIVE STYLES
+   ===================================================== */
+
+/* Prevent unwanted horizontal overflow */
+html {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+img,
+video {
+    height: auto;
+}
+
+/* Tablet and smaller laptops */
+@media (max-width: 1024px) {
+    .container {
+        width: min(100% - 40px, 960px);
+    }
+
+    .enquiry-wrapper {
+        gap: 32px;
+    }
+
+    .enquiry-form-row {
+        gap: 16px;
+    }
+}
+
+/* Tablets and mobile landscape */
+@media (max-width: 900px) {
+    .container {
+        width: min(100% - 32px, 720px);
+    }
+
+    .enquiry-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .enquiry-content,
+    .enquiry-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .enquiry-card {
+        max-width: 640px;
+        margin-inline: auto;
+    }
+
+    .enquiry-form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section-header,
+    .enquiry-content {
+        overflow-wrap: anywhere;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
+        line-height: 1.12;
+    }
+
+    h2 {
+        font-size: clamp(1.65rem, 7vw, 2.35rem);
+        line-height: 1.2;
+    }
+
+    h3 {
+        font-size: clamp(1.15rem, 5vw, 1.5rem);
+        line-height: 1.3;
+    }
+
+    p {
+        overflow-wrap: break-word;
+    }
+
+    .enquiry-wrapper {
+        gap: 28px;
+    }
+
+    .enquiry-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .enquiry-card {
+        padding: 24px 18px;
+    }
+
+    .enquiry-form input,
+    .enquiry-form select,
+    .enquiry-form textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    .enquiry-submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .enquiry-contact-mini {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .btn {
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .gallery-feature,
+    .testimonial-feature,
+    .final-cta-visual {
+        min-width: 0;
+    }
+
+    .footer-column {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 380px) {
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    .enquiry-card {
+        padding: 20px 14px;
+    }
+
+    .section-eyebrow {
+        font-size: 0.75rem;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

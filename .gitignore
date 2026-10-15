@@ -1,0 +1,20 @@
+# Secret and environment files
+.env
+.env.*
+!.env.example
+
+# Database credentials
+/config.php
+/config/database.php
+
+# Private admin files - review before publishing
+/admin/contact-enquiries.php
+
+# Dependencies and logs
+node_modules/
+vendor/
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1264 @@
+/* =========================================================
+   NEXUS EDUCATIONAL TOURS
+   ADD TOUR — PREMIUM ADMIN DESIGN SYSTEM
+   ========================================================= */
+
+/* ---------- 01. Design Tokens ---------- */
+
+:root {
+    color-scheme: light;
+
+    --at-navy: #173B67;
+    --at-blue: #2B83C6;
+    --at-orange: #F4A340;
+    --at-green: #22A06B;
+
+    --at-bg: #F4F7FB;
+    --at-surface: #FFFFFF;
+    --at-surface-soft: #F7FAFC;
+    --at-text: #102A43;
+    --at-muted: #66788A;
+    --at-border: #E1E8F0;
+
+    --at-danger: #C43D4B;
+    --at-danger-bg: #FFF1F2;
+
+    --at-shadow-sm:
+        0 3px 12px rgba(16, 42, 67, 0.05);
+
+    --at-shadow-md:
+        0 12px 35px rgba(23, 59, 103, 0.09);
+
+    --at-shadow-lg:
+        0 24px 65px rgba(23, 59, 103, 0.13);
+
+    --at-radius-sm: 10px;
+    --at-radius-md: 16px;
+    --at-radius-lg: 24px;
+
+    --at-transition:
+        220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    --at-container: 1080px;
+}
+
+/* ---------- 02. Dark Theme ---------- */
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --at-bg: #0B1728;
+    --at-surface: #13243A;
+    --at-surface-soft: #172B43;
+    --at-text: #F7FAFC;
+    --at-muted: #B6C4D4;
+    --at-border: #2A4058;
+
+    --at-danger: #FF929C;
+    --at-danger-bg: #38232D;
+
+    --at-shadow-sm:
+        0 3px 14px rgba(0, 0, 0, 0.14);
+
+    --at-shadow-md:
+        0 12px 35px rgba(0, 0, 0, 0.20);
+
+    --at-shadow-lg:
+        0 24px 65px rgba(0, 0, 0, 0.28);
+}
+
+/* ---------- 03. Base ---------- */
+
+body.add-tour-page {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(ellipse at 8% 4%,
+            rgba(43, 131, 198, 0.10),
+            transparent 32%),
+        radial-gradient(ellipse at 95% 28%,
+            rgba(244, 163, 64, 0.10),
+            transparent 28%),
+        var(--at-bg);
+
+    color: var(--at-text);
+    font-family: "Inter", "Manrope", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+
+    transition:
+        background-color var(--at-transition),
+        color var(--at-transition);
+}
+
+.add-tour-page *,
+.add-tour-page *::before,
+.add-tour-page *::after {
+    box-sizing: border-box;
+}
+
+.add-tour-page a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.add-tour-page button,
+.add-tour-page input,
+.add-tour-page select,
+.add-tour-page textarea {
+    font: inherit;
+}
+
+.add-tour-page button,
+.add-tour-page a,
+.add-tour-page input,
+.add-tour-page select,
+.add-tour-page textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.add-tour-page ::selection {
+    color: #FFFFFF;
+    background: var(--at-navy);
+}
+
+.add-tour-page :focus-visible {
+    outline: 3px solid rgba(43, 131, 198, 0.48);
+    outline-offset: 4px;
+}
+
+/* ---------- 04. Ambient Background Motion ---------- */
+
+.add-tour-page::before {
+    position: fixed;
+    z-index: 0;
+    top: -170px;
+    right: -150px;
+
+    width: 380px;
+    height: 380px;
+
+    content: "";
+    pointer-events: none;
+    border: 1px solid rgba(43, 131, 198, 0.12);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 36px rgba(43, 131, 198, 0.025),
+        0 0 0 72px rgba(43, 131, 198, 0.018);
+
+    animation: at-orbit 22s linear infinite;
+}
+
+.add-tour-page::after {
+    position: fixed;
+    z-index: 0;
+    bottom: -190px;
+    left: -150px;
+
+    width: 320px;
+    height: 320px;
+
+    content: "";
+    pointer-events: none;
+    border: 1px solid rgba(244, 163, 64, 0.14);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 34px rgba(244, 163, 64, 0.025),
+        0 0 0 68px rgba(244, 163, 64, 0.018);
+
+    animation: at-orbit 28s linear infinite reverse;
+}
+
+@keyframes at-orbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- 05. Main Container ---------- */
+
+.add-tour-container {
+    position: relative;
+    z-index: 1;
+
+    width: min(calc(100% - 48px),
+            var(--at-container));
+
+    margin: 0 auto;
+    padding: 46px 0 28px;
+
+    animation: at-page-enter 650ms ease both;
+}
+
+@keyframes at-page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- 06. Page Header ---------- */
+
+.add-tour-header {
+    position: relative;
+    margin-bottom: 25px;
+    padding: 8px 0 4px;
+}
+
+.add-tour-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 10px;
+
+    color: var(--at-blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.add-tour-eyebrow::before {
+    width: 24px;
+    height: 2px;
+    content: "";
+
+    border-radius: 10px;
+    background: var(--at-orange);
+}
+
+.add-tour-header h1 {
+    margin: 0;
+    color: var(--at-navy);
+
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1.3px;
+}
+
+html[data-theme="dark"] .add-tour-header h1 {
+    color: var(--at-text);
+}
+
+.add-tour-header p {
+    max-width: 650px;
+    margin: 12px 0 0;
+
+    color: var(--at-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ---------- 07. Navigation ---------- */
+
+.add-tour-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin: 25px 0;
+    padding: 14px 17px;
+
+    border: 1px solid var(--at-border);
+    border-radius: var(--at-radius-md);
+
+    background: var(--at-surface);
+    box-shadow: var(--at-shadow-sm);
+
+    transition:
+        border-color var(--at-transition),
+        box-shadow var(--at-transition),
+        background-color var(--at-transition);
+}
+
+.add-tour-navigation a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 40px;
+    padding: 9px 14px;
+
+    border: 1px solid var(--at-border);
+    border-radius: 10px;
+
+    color: var(--at-navy);
+    background: var(--at-surface-soft);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        transform var(--at-transition),
+        color var(--at-transition),
+        border-color var(--at-transition),
+        background-color var(--at-transition);
+}
+
+html[data-theme="dark"] .add-tour-navigation a {
+    color: var(--at-text);
+}
+
+.add-tour-navigation a:hover {
+    transform: translateY(-2px);
+    border-color: var(--at-blue);
+    color: var(--at-blue);
+}
+
+/* ---------- 08. Main Form Card ---------- */
+
+.add-tour-card {
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid var(--at-border);
+    border-radius: var(--at-radius-lg);
+
+    background: var(--at-surface);
+    box-shadow: var(--at-shadow-md);
+
+    transition:
+        border-color var(--at-transition),
+        box-shadow var(--at-transition),
+        background-color var(--at-transition);
+
+    animation: at-card-enter 750ms 100ms ease both;
+}
+
+.add-tour-card::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: 4px;
+    content: "";
+
+    background: linear-gradient(90deg,
+            var(--at-navy),
+            var(--at-blue) 58%,
+            var(--at-orange));
+}
+
+@keyframes at-card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.add-tour-card-heading {
+    position: relative;
+    padding: 27px 30px 22px;
+
+    border-bottom: 1px solid var(--at-border);
+
+    background:
+        linear-gradient(115deg,
+            rgba(43, 131, 198, 0.065),
+            transparent 68%);
+}
+
+.add-tour-card-heading h2 {
+    margin: 0;
+
+    color: var(--at-text);
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: -0.45px;
+}
+
+.add-tour-card-heading p {
+    margin: 7px 0 0;
+
+    color: var(--at-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* ---------- 09. Error / Validation Messages ---------- */
+
+.add-tour-errors {
+    margin: 22px 30px 0;
+    padding: 15px 18px;
+
+    border: 1px solid rgba(196, 61, 75, 0.25);
+    border-left: 4px solid var(--at-danger);
+    border-radius: 12px;
+
+    color: var(--at-danger);
+    background: var(--at-danger-bg);
+
+    animation: at-message-enter 350ms ease both;
+}
+
+.add-tour-errors h3,
+.add-tour-errors strong {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.add-tour-errors ul {
+    margin: 6px 0 0;
+    padding-left: 21px;
+}
+
+.add-tour-errors li {
+    margin: 4px 0;
+    font-size: 13px;
+}
+
+@keyframes at-message-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- 10. Form Layout ---------- */
+
+.add-tour-form {
+    padding: 28px 30px 30px;
+}
+
+.add-tour-form-inner {
+    width: 100%;
+    margin: 0;
+}
+
+.add-tour-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 23px 24px;
+}
+
+.add-tour-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+
+    animation: at-field-enter 500ms ease both;
+}
+
+.add-tour-field:nth-child(2) {
+    animation-delay: 35ms;
+}
+
+.add-tour-field:nth-child(3) {
+    animation-delay: 70ms;
+}
+
+.add-tour-field:nth-child(4) {
+    animation-delay: 105ms;
+}
+
+.add-tour-field:nth-child(5) {
+    animation-delay: 140ms;
+}
+
+.add-tour-field:nth-child(6) {
+    animation-delay: 175ms;
+}
+
+.add-tour-field:nth-child(7) {
+    animation-delay: 210ms;
+}
+
+.add-tour-field:nth-child(8) {
+    animation-delay: 245ms;
+}
+
+@keyframes at-field-enter {
+    from {
+        opacity: 0;
+        transform: translateY(9px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.add-tour-field-full {
+    grid-column: 1 / -1;
+}
+
+.add-tour-field label {
+    display: block;
+    margin: 0;
+
+    color: var(--at-text);
+    font-size: 13px;
+    font-weight: 750;
+    line-height: 1.5;
+}
+
+.add-tour-field label .required,
+.add-tour-field label span.required {
+    color: #D97706;
+}
+
+/* ---------- 11. Inputs / Select / Textarea ---------- */
+
+.add-tour-field input,
+.add-tour-field select,
+.add-tour-field textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 12px 14px;
+
+    border: 1px solid var(--at-border);
+    border-radius: 11px;
+
+    outline: none;
+
+    color: var(--at-text);
+    background: var(--at-surface-soft);
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    transition:
+        border-color var(--at-transition),
+        box-shadow var(--at-transition),
+        background-color var(--at-transition),
+        transform var(--at-transition);
+}
+
+.add-tour-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.add-tour-field input::placeholder,
+.add-tour-field textarea::placeholder {
+    color: var(--at-muted);
+    opacity: 0.8;
+}
+
+.add-tour-field input:hover,
+.add-tour-field select:hover,
+.add-tour-field textarea:hover {
+    border-color: rgba(43, 131, 198, 0.65);
+}
+
+.add-tour-field input:focus,
+.add-tour-field select:focus,
+.add-tour-field textarea:focus {
+    border-color: var(--at-blue);
+    background: var(--at-surface);
+
+    box-shadow:
+        0 0 0 4px rgba(43, 131, 198, 0.12),
+        0 4px 12px rgba(43, 131, 198, 0.04);
+}
+
+.add-tour-field input:focus-visible,
+.add-tour-field select:focus-visible,
+.add-tour-field textarea:focus-visible {
+    outline: none;
+}
+
+.add-tour-field input:disabled,
+.add-tour-field select:disabled,
+.add-tour-field textarea:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Consistent native select styling */
+
+.add-tour-field select {
+    cursor: pointer;
+}
+
+.add-tour-field select option {
+    color: var(--at-text);
+    background: var(--at-surface);
+}
+
+/* Number inputs */
+
+.add-tour-field input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.add-tour-field input[type="number"]::-webkit-inner-spin-button,
+.add-tour-field input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+/* ---------- 12. Helper Text ---------- */
+
+.add-tour-field small,
+.add-tour-field .field-help,
+.add-tour-field .help-text {
+    display: block;
+    margin-top: 1px;
+
+    color: var(--at-muted);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.add-tour-field input[aria-invalid="true"],
+.add-tour-field select[aria-invalid="true"],
+.add-tour-field textarea[aria-invalid="true"] {
+    border-color: var(--at-danger);
+    box-shadow: 0 0 0 3px rgba(196, 61, 75, 0.09);
+}
+
+/* ---------- 13. Form Footer ---------- */
+
+.add-tour-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-top: 30px;
+    padding-top: 23px;
+
+    border-top: 1px solid var(--at-border);
+}
+
+.add-tour-footer-note {
+    max-width: 420px;
+    color: var(--at-muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.add-tour-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* ---------- 14. Premium Buttons ---------- */
+
+.add-tour-button {
+    position: relative;
+    isolation: isolate;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 47px;
+    padding: 12px 20px;
+
+    overflow: hidden;
+
+    border: 1px solid transparent;
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.3;
+    text-align: center;
+
+    transition:
+        transform var(--at-transition),
+        box-shadow var(--at-transition),
+        background-color var(--at-transition),
+        border-color var(--at-transition),
+        color var(--at-transition);
+}
+
+.add-tour-button::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    content: "";
+
+    background: linear-gradient(110deg,
+            transparent 15%,
+            rgba(255, 255, 255, 0.18) 48%,
+            transparent 78%);
+
+    transform: translateX(-130%);
+    transition: transform 550ms ease;
+}
+
+.add-tour-button:hover::after {
+    transform: translateX(130%);
+}
+
+.add-tour-button:hover {
+    transform: translateY(-2px);
+}
+
+.add-tour-button:active {
+    transform: translateY(0) scale(0.985);
+}
+
+.add-tour-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.add-tour-button-primary {
+    border-color: var(--at-navy);
+    color: #FFFFFF;
+
+    background: linear-gradient(115deg,
+            #173B67,
+            #245C91);
+
+    box-shadow: 0 7px 18px rgba(23, 59, 103, 0.20);
+}
+
+.add-tour-button-primary:hover {
+    border-color: var(--at-blue);
+
+    background: linear-gradient(115deg,
+            #1D4D80,
+            #2B83C6);
+
+    box-shadow: 0 11px 25px rgba(43, 131, 198, 0.25);
+}
+
+.add-tour-button-secondary {
+    border-color: var(--at-border);
+    color: var(--at-text);
+    background: var(--at-surface);
+}
+
+.add-tour-button-secondary:hover {
+    border-color: var(--at-blue);
+    color: var(--at-blue);
+    background: var(--at-surface-soft);
+}
+
+/* ---------- 15. Page Footer ---------- */
+
+.add-tour-page-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 25px 2px 8px;
+
+    color: var(--at-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.add-tour-page-footer a {
+    color: var(--at-blue);
+    font-weight: 700;
+
+    transition: color var(--at-transition);
+}
+
+.add-tour-page-footer a:hover {
+    color: var(--at-orange);
+}
+
+/* ---------- 16. Subtle Scrollbar ---------- */
+
+.add-tour-page {
+    scrollbar-width: thin;
+    scrollbar-color: #A7B9CC transparent;
+}
+
+.add-tour-page::-webkit-scrollbar {
+    width: 9px;
+}
+
+.add-tour-page::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.add-tour-page::-webkit-scrollbar-thumb {
+    border: 2px solid var(--at-bg);
+    border-radius: 20px;
+    background: #A7B9CC;
+}
+
+/* ---------- 17. Responsive Layout ---------- */
+
+@media (max-width: 760px) {
+    .add-tour-container {
+        width: min(calc(100% - 30px), var(--at-container));
+        padding-top: 30px;
+    }
+
+    .add-tour-header h1 {
+        font-size: clamp(27px, 6vw, 35px);
+        letter-spacing: -0.8px;
+    }
+
+    .add-tour-navigation {
+        padding: 12px;
+    }
+
+    .add-tour-card {
+        border-radius: 19px;
+    }
+
+    .add-tour-card-heading {
+        padding: 23px 21px 19px;
+    }
+
+    .add-tour-form {
+        padding: 23px 21px 24px;
+    }
+
+    .add-tour-grid {
+        gap: 19px;
+    }
+
+    .add-tour-errors {
+        margin-right: 21px;
+        margin-left: 21px;
+    }
+
+    .add-tour-form-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .add-tour-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+    .add-tour-container {
+        width: calc(100% - 22px);
+        padding-top: 22px;
+    }
+
+    .add-tour-header {
+        margin-bottom: 20px;
+    }
+
+    .add-tour-header h1 {
+        font-size: 28px;
+    }
+
+    .add-tour-header p {
+        font-size: 13px;
+    }
+
+    .add-tour-navigation {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .add-tour-navigation a {
+        width: 100%;
+    }
+
+    .add-tour-card-heading {
+        padding: 21px 17px 17px;
+    }
+
+    .add-tour-card-heading h2 {
+        font-size: 19px;
+    }
+
+    .add-tour-form {
+        padding: 20px 17px 21px;
+    }
+
+    .add-tour-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .add-tour-field-full {
+        grid-column: auto;
+    }
+
+    .add-tour-field input,
+    .add-tour-field select,
+    .add-tour-field textarea {
+        font-size: 16px;
+    }
+
+    .add-tour-errors {
+        margin-right: 17px;
+        margin-left: 17px;
+    }
+
+    .add-tour-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-tour-button {
+        width: 100%;
+    }
+
+    .add-tour-page-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* ---------- 18. Reduced Motion Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .add-tour-page *,
+    .add-tour-page *::before,
+    .add-tour-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================================
+   ADD TOUR — PREMIUM ORBIT HERO HEADER
+   Header-only override; all existing form styling preserved.
+   ========================================================= */
+
+.add-tour-page .add-tour-header.add-tour-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    min-height: 310px;
+    margin: 0 0 28px;
+    padding: 38px 42px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 26px;
+    color: #FFFFFF;
+    background:
+        radial-gradient(circle at 78% 45%, rgba(43, 131, 198, 0.38), transparent 32%),
+        linear-gradient(120deg, #102A43 0%, #173B67 52%, #245C91 100%);
+    box-shadow: 0 20px 48px rgba(23, 59, 103, 0.20);
+}
+
+.add-tour-page .add-tour-hero-copy {
+    position: relative;
+    z-index: 3;
+    flex: 1 1 55%;
+    min-width: 0;
+}
+
+.add-tour-page .add-tour-hero .add-tour-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 15px;
+    color: #FFD18C;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.add-tour-page .add-tour-hero .add-tour-eyebrow::before {
+    width: 28px;
+    height: 3px;
+    flex: 0 0 28px;
+    border-radius: 20px;
+    background: #F4A340;
+}
+
+.add-tour-page .add-tour-hero h1 {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+}
+
+.add-tour-page .add-tour-hero .add-tour-hero-description {
+    max-width: 490px;
+    margin: 15px 0 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.add-tour-page .add-tour-hero .add-tour-navigation {
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 24px 0 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.add-tour-page .add-tour-hero .add-tour-navigation a {
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 10px;
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 12px;
+    font-weight: 700;
+    backdrop-filter: blur(8px);
+    transition: transform 220ms ease, border-color 220ms ease,
+        background 220ms ease, color 220ms ease;
+}
+
+.add-tour-page .add-tour-hero .add-tour-navigation a:hover {
+    transform: translateY(-2px);
+    border-color: #F4A340;
+    color: #FFFFFF;
+    background: rgba(244, 163, 64, 0.18);
+}
+
+/* Orbit artwork */
+
+.add-tour-page .add-tour-hero-art {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 285px;
+    width: 285px;
+    height: 255px;
+    margin-right: 5px;
+}
+
+.add-tour-page .add-tour-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.add-tour-page .add-tour-orbit-one {
+    width: 145px;
+    height: 145px;
+    border-color: rgba(255, 255, 255, 0.55);
+    animation: addTourOrbitRotate 18s linear infinite;
+}
+
+.add-tour-page .add-tour-orbit-two {
+    width: 205px;
+    height: 205px;
+    border-color: rgba(120, 197, 255, 0.38);
+    transform: translate(-50%, -50%) rotate(-35deg) scaleY(0.65);
+    animation: addTourOrbitRotate 24s linear infinite reverse;
+}
+
+.add-tour-page .add-tour-orbit-three {
+    width: 260px;
+    height: 260px;
+    border-color: rgba(255, 255, 255, 0.17);
+    transform: translate(-50%, -50%) rotate(35deg) scaleY(0.76);
+    animation: addTourOrbitRotate 30s linear infinite;
+}
+
+.add-tour-page .add-tour-orbit-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    display: grid;
+    width: 88px;
+    height: 88px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 26px;
+    color: #FFFFFF;
+    background: linear-gradient(145deg, #2B83C6, #173B67);
+    box-shadow: 0 0 0 9px rgba(255, 255, 255, 0.06),
+        0 12px 35px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.add-tour-page .add-tour-orbit-core span {
+    font-size: 39px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    transform: rotate(8deg);
+}
+
+.add-tour-page .add-tour-orbit-dot {
+    position: absolute;
+    z-index: 3;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    background: #F4A340;
+    box-shadow: 0 0 18px rgba(244, 163, 64, 0.65);
+}
+
+.add-tour-page .add-tour-dot-one {
+    top: 30px;
+    left: 128px;
+}
+
+.add-tour-page .add-tour-dot-two {
+    right: 20px;
+    bottom: 68px;
+    width: 10px;
+    height: 10px;
+    background: #79D4FF;
+}
+
+.add-tour-page .add-tour-dot-three {
+    bottom: 25px;
+    left: 67px;
+    width: 8px;
+    height: 8px;
+}
+
+.add-tour-page .add-tour-orbit-label {
+    position: absolute;
+    z-index: 3;
+    padding: 6px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(16, 42, 67, 0.62);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+}
+
+.add-tour-page .add-tour-label-one {
+    top: 38px;
+    right: 8px;
+}
+
+.add-tour-page .add-tour-label-two {
+    bottom: 34px;
+    right: 25px;
+}
+
+@keyframes addTourOrbitRotate {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+/* Tablet */
+
+@media (max-width: 760px) {
+    .add-tour-page .add-tour-header.add-tour-hero {
+        gap: 8px;
+        min-height: 280px;
+        padding: 30px 25px;
+    }
+
+    .add-tour-page .add-tour-hero-art {
+        flex-basis: 210px;
+        width: 210px;
+        height: 220px;
+        margin-right: -12px;
+        transform: scale(0.85);
+        transform-origin: center right;
+    }
+
+    .add-tour-page .add-tour-hero .add-tour-navigation {
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+    .add-tour-page .add-tour-header.add-tour-hero {
+        display: block;
+        min-height: auto;
+        padding: 26px 20px 18px;
+        border-radius: 20px;
+    }
+
+    .add-tour-page .add-tour-hero h1 {
+        font-size: 32px;
+        letter-spacing: -0.8px;
+    }
+
+    .add-tour-page .add-tour-hero .add-tour-hero-description {
+        font-size: 13px;
+    }
+
+    .add-tour-page .add-tour-hero .add-tour-navigation {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .add-tour-page .add-tour-hero .add-tour-navigation a {
+        width: 100%;
+    }
+
+    .add-tour-page .add-tour-hero-art {
+        width: 100%;
+        height: 210px;
+        margin: 18px 0 -4px;
+        transform: scale(0.8);
+        transform-origin: center center;
+    }
+}
+
+/* Respect reduced-motion preference */
+
+@media (prefers-reduced-motion: reduce) {
+    .add-tour-page .add-tour-orbit {
+        animation: none !important;
+    }
+}
