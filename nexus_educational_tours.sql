@@ -343,3 +343,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Run only if these columns do not already exist in the tours table.
+-- Check first with: SHOW COLUMNS FROM tours;
+ALTER TABLE tours
+    ADD COLUMN activities TEXT NULL AFTER highlights,
+    ADD COLUMN places_covered TEXT NULL AFTER activities,
+    ADD COLUMN suitable_for VARCHAR(500) NULL AFTER places_covered;
