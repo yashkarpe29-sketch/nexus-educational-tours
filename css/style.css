@@ -15534,3 +15534,44 @@ textarea:focus-visible {
     }
 }
 
+.tour-card-activities {
+    margin-top: 18px;
+}
+
+.tour-card-activities h4 {
+    margin: 0 0 10px;
+    color: #173B67;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.tour-activity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tour-activity-tag,
+.tour-activity-more {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.tour-activity-tag {
+    background: #FFF3E2;
+    border: 1px solid #F4A340;
+    color: #74420B;
+}
+
+.tour-activity-more {
+    background: #F7FAFC;
+    border: 1px solid #D6E0EA;
+    color: #173B67;
+    font-weight: 700;
+}
