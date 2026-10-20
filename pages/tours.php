@@ -10,17 +10,32 @@ if (!function_exists('e')) {
   }
 }
 
+
 function tour_items($value): array
 {
   $raw = trim((string)($value ?? ''));
-  if ($raw === '') return [];
+
+  if ($raw === '') {
+    return [];
+  }
+
   $decoded = json_decode($raw, true);
-  $items = is_array($decoded) ? $decoded : (preg_split('/\r\n|\r|\n|,/', $raw) ?: []);
-  return array_values(array_unique(array_filter(array_map(
-    static fn($x) => is_scalar($x) ? trim((string)$x) : '',
-    $items
-  ), static fn($x) => $x !== '')));
+
+  if (is_array($decoded)) {
+    $items = $decoded;
+  } else {
+    $items = preg_split('/\r\n|\r|\n|,/', $raw) ?: [];
+  }
+
+  return array_values(array_unique(array_filter(
+    array_map(
+      static fn($x) => is_scalar($x) ? trim((string)$x) : '',
+      $items
+    ),
+    static fn($x) => $x !== ''
+  )));
 }
+
 function tour_url($path): string
 {
   $path = trim((string)($path ?? ''));
