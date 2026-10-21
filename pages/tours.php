@@ -537,7 +537,22 @@ foreach ($tours as $t) {
                       <div class="tour-tag-list"><?php foreach (array_slice($group[2], 0, $group[4]) as $item): ?><span class="tour-tag <?= $group[3] ?>"><?= e($item) ?></span><?php endforeach; ?><?php if (count($group[2]) > $group[4]): ?><button type="button" class="tour-tag tour-tag-more" data-tour-details="<?= $id ?>">+<?= count($group[2]) - $group[4] ?> more</button><?php endif; ?></div>
                     </div>
                   <?php endforeach; ?>
-                  <div class="published-tour-actions"><button type="button" class="published-tour-link primary" data-tour-details="<?= $id ?>">View full details ↗</button><a class="published-tour-link" href="<?= e(BASE_URL) ?>index.php#enquiry">Enquire →</a></div>
+
+                  <div class="published-tour-actions">
+                    <button
+                      type="button"
+                      class="published-tour-link primary"
+                      data-tour-details="<?= (int)$id ?>">
+                      View full details ↗
+                    </button>
+
+                    <a
+                      class="published-tour-link"
+                      href="<?= e(rtrim(BASE_URL, '/') . '/pages/tour-enquiry.php?tour_id=' . (int)$id) ?>">
+                      Enquire →
+                    </a>
+                  </div>
+
                   <script type="application/json" id="tour-data-<?= $id ?>">
                     <?= $json ?: '{}' ?>
                   </script>
