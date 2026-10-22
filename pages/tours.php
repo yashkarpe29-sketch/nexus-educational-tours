@@ -582,7 +582,8 @@ foreach ($tours as $t) {
           <div class="tours-journey-copy"><span class="section-eyebrow animated-eyebrow"><span class="eyebrow-line"></span>Your Journey, Your Way</span>
             <h2>Don't see exactly what you are looking for? <span> Let's create it. </span></h2>
             <p>Share your institution, group size, destination or travel requirements. Your journey can be discussed around what your group actually needs.</p>
-            <div class="tours-journey-actions"><a href="<?= e(BASE_URL) ?>index.php#enquiry" class="btn btn-primary">Start Your Enquiry →</a><a href="tel:7219766277" class="tours-call-link"><span>Prefer to talk?</span><strong>7219766277</strong></a></div>
+            <div class="tours-journey-actions"> <a class="btn btn-primary"
+                href="<?= e(rtrim(BASE_URL, '/') . '/pages/tour-enquiry.php?tour_id=' . (int)$id) ?>"> Start Your Enquiry →</a><a href="tel:7219766277" class="tours-call-link"><span>Prefer to talk?</span><strong>7219766277</strong></a></div>
           </div>
           <div class="tours-journey-visual" aria-hidden="true">
             <div class="journey-route-line"></div>
